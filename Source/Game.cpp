@@ -3,6 +3,8 @@
 #include "Game.h"
 
 CGame::CGame(){
+	estado;
+
 	///AC2 <-- Aqui debes de iniciar tu estado
 }
 
