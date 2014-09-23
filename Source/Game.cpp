@@ -3,7 +3,8 @@
 #include "Game.h"
 
 CGame::CGame(){
-	estado;//ACT2:Mal, Aqui debes de darle a "estado" su valor inicial, para indicar en que estado iniciara. Si la dejas asi, sola, el juego nunca tendra estado inicial.
+	estado = ESTADO_INICIANDO;
+	//ACT2:Mal, Aqui debes de darle a "estado" su valor inicial, para indicar en que estado iniciara. Si la dejas asi, sola, el juego nunca tendra estado inicial.
 }
 
 // Con esta función eliminaremos todos los elementos en pantalla
