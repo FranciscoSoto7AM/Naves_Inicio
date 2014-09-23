@@ -1,10 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Game.h"
+#include <SDL.h>
+#include <SDL_image.h>
+
 
 CGame::CGame(){
 	estado = ESTADO_INICIANDO;
 	//ACT2:Mal, Aqui debes de darle a "estado" su valor inicial, para indicar en que estado iniciara. Si la dejas asi, sola, el juego nunca tendra estado inicial.
+	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+	{
+		printf("no se pudo iniciar SDL: %s\n", SDL_GetError());
+		exit(EXIT_FAILURE);
+	}
+	screen = SDL_SetVideoMode(600, 480, 24, SDL_HWSURFACE);
+	if (screen == NULL)
+	{
+		printf("no se puede inicializar el modo grafico: \n", SDL_GetError());
+		exit(1);
+	}
 }
 
 // Con esta función eliminaremos todos los elementos en pantalla
@@ -21,6 +35,27 @@ bool CGame::Start()
 		//Maquina de estados
 		switch(estado){
 		case Estado::ESTADO_INICIANDO: //INICIALIZAR
+			Iniciando(); 
+			{
+				//nave=SDL_LoadBMP("../DATA/nave.bmp");			
+				//nave = IMG_LoadJPG_RW(SDL_RWFromFile("../Data/umi.jpg", "rb"));
+				//nave = IMG_LoadJPG_RW(SDL_RWFromFile("../Data/Tools.jpg", "rb"));
+				//nave = IMG_LoadPNG_RW(SDL_RWFromFile("../Data/dados.png", "rb"));
+				nave = IMG_LoadJPG_RW(SDL_RWFromFile("../Data/cuadro.jpg", "rb"));
+			
+				SDL_Rect fuente;
+				fuente.x = 580;
+				fuente.y = 380;
+				fuente.w = 319;
+				fuente.h = 19;
+				SDL_Rect destino;
+				destino.x = 100;
+				destino.y = 100;
+				destino.w = 100;
+				destino.h = 100;
+
+				SDL_BlitSurface(nave, &fuente, screen, &destino);
+			}
 			break;
 		case Estado::ESTADO_MENU:	   //MENU	
 			break;
@@ -32,6 +67,7 @@ bool CGame::Start()
 				salirJuego = true;
 			break;
 		};
+		SDL_Flip(screen);
     }
 	return true;
 }
