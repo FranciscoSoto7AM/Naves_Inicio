@@ -35,7 +35,7 @@ bool CGame::Start()
 		//Maquina de estados
 		switch(estado){
 		case Estado::ESTADO_INICIANDO: //INICIALIZAR
-			Iniciando(); 
+//			Iniciando(); 
 			{
 				//nave=SDL_LoadBMP("../DATA/nave.bmp");			
 				//nave = IMG_LoadJPG_RW(SDL_RWFromFile("../Data/umi.jpg", "rb"));
