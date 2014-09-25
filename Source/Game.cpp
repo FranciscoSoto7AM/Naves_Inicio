@@ -18,11 +18,14 @@ CGame::CGame(){
 	{
 		printf("no se puede inicializar el modo grafico: \n", SDL_GetError());
 		exit(1);
+		atexit(SDL_Quit);
 	}
+	SDL_WM_SetCaption("Mi Primer Juego", NULL);
 }
 
 // Con esta función eliminaremos todos los elementos en pantalla
 void CGame::Finalize(){
+	SDL_Quit();
 }
 
 bool CGame::Start()
