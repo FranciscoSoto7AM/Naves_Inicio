@@ -7,7 +7,7 @@
 
 CGame::CGame(){
 	estado = ESTADO_INICIANDO;
-	//ACT2:Mal, Aqui debes de darle a "estado" su valor inicial, para indicar en que estado iniciara. Si la dejas asi, sola, el juego nunca tendra estado inicial.
+	//ACT3:Mal, Aqui no debes de iniciar el video, deb estar en un metodo aparte, controlado por tu estado ESTADO_INICIANDO
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		printf("no se pudo iniciar SDL: %s\n", SDL_GetError());
@@ -21,6 +21,7 @@ CGame::CGame(){
 		atexit(SDL_Quit);
 	}
 	SDL_WM_SetCaption("Mi Primer Juego", NULL);
+	//// ACT3:Mal hasta aqui.
 }
 
 // Con esta función eliminaremos todos los elementos en pantalla
