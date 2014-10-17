@@ -7,7 +7,31 @@
 
 CGame::CGame(){
 	estado = ESTADO_INICIANDO;
+	//ACT3: Mal, este codigo no va aqui. Va en el metodo Iniciando().
 	//ACT3:Mal, Aqui no debes de iniciar el video, deb estar en un metodo aparte, controlado por tu estado ESTADO_INICIANDO
+	//if (SDL_Init(SDL_INIT_VIDEO) < 0)
+	//{
+	//	printf("no se pudo iniciar SDL: %s\n", SDL_GetError());
+	//	exit(EXIT_FAILURE);
+	//}
+	//screen = SDL_SetVideoMode(600, 480, 24, SDL_HWSURFACE);
+	//if (screen == NULL)
+	//{
+	//	printf("no se puede inicializar el modo grafico: \n", SDL_GetError());
+	//	exit(1);
+	//	atexit(SDL_Quit);
+	//}
+	//SDL_WM_SetCaption("Mi Primer Juego", NULL);
+	//// ACT3:Mal hasta aqui.
+}
+
+// Con esta función eliminaremos todos los elementos en pantalla
+void CGame::Finalize(){
+	SDL_Quit();
+}
+
+//ACT3: Mal, falto crear este metodo.
+void CGame::Iniciando(){
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		printf("no se pudo iniciar SDL: %s\n", SDL_GetError());
@@ -18,16 +42,11 @@ CGame::CGame(){
 	{
 		printf("no se puede inicializar el modo grafico: \n", SDL_GetError());
 		exit(1);
-		atexit(SDL_Quit);
 	}
+	atexit(SDL_Quit);
 	SDL_WM_SetCaption("Mi Primer Juego", NULL);
-	//// ACT3:Mal hasta aqui.
 }
 
-// Con esta función eliminaremos todos los elementos en pantalla
-void CGame::Finalize(){
-	SDL_Quit();
-}
 
 bool CGame::Start()
 {
@@ -39,7 +58,7 @@ bool CGame::Start()
 		//Maquina de estados
 		switch(estado){
 		case Estado::ESTADO_INICIANDO: //INICIALIZAR
-//			Iniciando(); 
+			Iniciando(); //ACT3: Mal, Esto debe estar habilitado
 			{
 				//nave=SDL_LoadBMP("../DATA/nave.bmp");			
 				//nave = IMG_LoadJPG_RW(SDL_RWFromFile("../Data/umi.jpg", "rb"));
@@ -60,6 +79,7 @@ bool CGame::Start()
 
 				SDL_BlitSurface(nave, &fuente, screen, &destino);
 			}
+			estado = ESTADO_MENU;
 			break;
 		case Estado::ESTADO_MENU:	   //MENU	
 			break;
