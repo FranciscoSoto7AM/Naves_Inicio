@@ -82,9 +82,10 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>$(ProjectDir)\..\Librerias\sdl\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL.lib;SDLmain.lib;SDL_image.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib</AdditionalDependencies>
-      <IgnoreSpecificDefaultLibraries>kernel32.lib</IgnoreSpecificDefaultLibraries>
+      <AdditionalLibraryDirectories>C:\Program Files\Microsoft SDKs\Windows\v7.1A\Lib;$(ProjectDir)\..\Librerias\sdl\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL.lib;SDLmain.lib;SDL_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -97,7 +98,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>$(ProjectDir)\..\Librerias\sdl\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Program Files\Microsoft SDKs\Windows\v7.1A\Lib;$(ProjectDir)\..\Librerias\sdl\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL.lib;SDLmain.lib;SDL_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>kernel32.lib</IgnoreSpecificDefaultLibraries>
     </Link>
@@ -131,9 +132,14 @@
   <ItemGroup>
     <ClCompile Include="..\Source\main.cpp" />
     <ClCompile Include="..\Source\Game.cpp" />
+    <ClCompile Include="..\Source\Sprite.cpp" />
+    <ClCompile Include="..\Source\SpriteDef.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Source\Config.h" />
     <ClInclude Include="..\Source\Game.h" />
+    <ClInclude Include="..\Source\Sprite.h" />
+    <ClInclude Include="..\Source\SpriteDef.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Ejecutable\Readme.txt" />
