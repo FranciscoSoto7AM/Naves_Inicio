@@ -10,12 +10,11 @@ class Sprite{
 	SpriteDef spriteDef;
 public:
 	Sprite(SDL_Surface * Screen);
-	~Sprite();
+	~Sprite(); //destructor
 	void CargaImagen(char * path);
-	void PintarModulo(int nombre, int x, int y, int w, int h);
 	void PintarModulo(int nombre, int x, int y);
+	int WidthModule(int module);
+	int HeightModule(int module);
 
 };
-
-
 #endif

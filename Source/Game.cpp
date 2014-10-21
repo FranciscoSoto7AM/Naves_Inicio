@@ -12,24 +12,8 @@
 
 CGame::CGame(){
 	estado = ESTADO_INICIANDO;
-	//ACT2:Mal, Aqui debes de darle a "estado" su valor inicial, para indicar en que estado iniciara. Si la dejas asi, sola, el juego nunca tendra estado inicial.
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
-	{
-		printf("no se pudo iniciar SDL: %s\n", SDL_GetError());
-		exit(EXIT_FAILURE);
-	}
-	screen = SDL_SetVideoMode(WIDTH_SCREEN, HEIGHT_SCREEN, 24, SDL_HWSURFACE);
-	if (screen == NULL)
-	{
-		printf("no se puede inicializar el modo grafico: \n", SDL_GetError());
-		exit(1);
-		atexit(SDL_Quit);
-	}
-	SDL_WM_SetCaption("Mi Primer Juego", NULL);
+	atexit(SDL_Quit);
 	
-
-	nave = new Sprite(screen);
-	nave->CargaImagen("../Data/minave.bmp");
 }
 
 // Con esta función eliminaremos todos los elementos en pantalla
@@ -39,66 +23,113 @@ void CGame::Finalize(){
 	SDL_Quit();
 }
 
+
+
 void CGame::Iniciando()
 {
-	if (screen == NULL){
+	if (SDL_Init(SDL_INIT_VIDEO))
+	{
 		printf("Error %s", SDL_GetError());
 		exit(EXIT_FAILURE);
 	}
-	SDL_WM_SetCaption("Mi primer Juego", NULL);
-	atexit(SDL_Quit);
-	nave = new Sprite(screen);
-	nave->CargaImagen("../Dta/MiNave.bmp");
-	//delete nave;	
+	screen = SDL_SetVideoMode(WIDTH_SCREEN, HEIGHT_SCREEN, 24, SDL_HWSURFACE);
+	if (screen == NULL)
+	{
+		screen = SDL_SetVideoMode(640, 480, 24, SDL_SWSURFACE);
+	}
+	if (screen == NULL)
+	{
+		screen = SDL_SetVideoMode(640, 480, 24, SDL_SWSURFACE);
+	}
+	if (screen == NULL)
+	{
+		printf("Error %s ", SDL_GetError());
+		exit(EXIT_FAILURE);
 
-}
+		printf("Error %s ", SDL_GetError());
+		exit(EXIT_FAILURE);
+	}
+	SDL_WM_SetCaption("Mi Primer video Juego", NULL);
 
-bool CGame::Start()
-{
-	// Esta variable nos ayudara a controlar la salida del juego...
-	int salirJuego = false;
-          
-	while (salirJuego == false){
-            
-		//Maquina de estados
-		switch(estado){
-		case Estado::ESTADO_INICIANDO: //inicializando
-  		    Iniciando(); 
-			estado = ESTADO_MENU;
+		nave = new Nave(screen, "../Data/minave.bmp", (WIDTH_SCREEN / 2) /*- (sprite->WidthModule(0) / 2)*/, (HEIGHT_SCREEN - 80) /*- sprite->HeightModule(0)*/);
+		enemigo = new Nave(screen, "../Data/enemigo.bmp", 0, 0);
+		enemigo->SetAutoMovimiento(true);
+	}
+
+
+	bool CGame::Start()
+	{
+		// Esta variable nos ayudara a controlar la salida del juego...
+		int salirJuego = false;
+		int i = 0;
+
+		while (salirJuego == false)
+		{
+
+			//Maquina de estados
+			switch (estado)
 			{
-				/*nave=SDL_LoadBMP("../DATA/nave.bmp");			
-				//nave = IMG_LoadJPG_RW(SDL_RWFromFile("../Data/umi.jpg", "rb"));
-				//nave = IMG_LoadJPG_RW(SDL_RWFromFile("../Data/Tools.jpg", "rb"));
-				//nave = IMG_LoadPNG_RW(SDL_RWFromFile("../Data/dados.png", "rb"));
-				nave = IMG_LoadJPG_RW(SDL_RWFromFile("../Data/cuadro.jpg", "rb"));
-			
-				SDL_Rect fuente;
-				fuente.x = 580;
-				fuente.y = 380;
-				fuente.w = 319;
-				fuente.h = 19;
-				SDL_Rect destino;
-				destino.x = 100;
-				destino.y = 100;
-				destino.w = 100;
-				destino.h = 100;
 
-				SDL_BlitSurface(nave, &fuente, screen, &destino);*/
-			}
-			break;
-		case Estado::ESTADO_MENU:	   //MENU	
-			//nave->PintarModulo(0, 0, 0, 64, 64);
-			nave->PintarModulo(0, 0, 0);
-			break;
-		case Estado::ESTADO_JUGANDO: //JUGAR
-			break;
-		case Estado::ESTADO_TERMINANDO: //TERMINAR
-			break;
-		case Estado::ESTADO_FINALIZADO:  //FINALIZAR
+			case Estado::ESTADO_INICIANDO: //inicializando
+				printf("1.- Estado_Iniciando");
+				Iniciando();
+				estado = ESTADO_MENU;
+				break;
+			case Estado::ESTADO_MENU:	   //MENU
+				if (i == 0)
+				{
+					printf("\n2. Estado_Menu");
+					estado = ESTADO_JUGANDO;
+					i = 1;
+				}
+				else
+				{
+					printf("\n2. Estado_Menu");
+					estado = ESTADO_FINALIZADO;
+
+				}
+				break;
+			case Estado::ESTADO_JUGANDO: //JUGAR
+				enemigo->Actualizar();
+				SDL_FillRect(screen, NULL, SDL_MapRGB(screen->format, 0, 0, 0));
+				keys = SDL_GetKeyState(NULL);
+				if (keys[SDLK_RIGHT])
+				{
+					nave->MoverX(1);
+
+				}
+				if (keys[SDLK_LEFT])
+				{
+					nave->MoverX(-1);
+				}
+				nave->Pintar();
+				enemigo->Pintar();
+				if (keys[SDLK_DOWN])
+				{
+			
+					printf("\n3. Estado_Jugando");
+					estado = ESTADO_TERMINANDO;
+				}
+				break;
+
+			case Estado::ESTADO_TERMINANDO: //TERMINAR
+				printf("\n\n4. Estado_Terminando");
+				estado = ESTADO_FINALIZADO;
+				break;
+
+			case Estado::ESTADO_FINALIZADO:  //FINALIZAR
+				printf("\n\n5. Estado_Finalizando");
+				getchar();
 				salirJuego = true;
-			break;
-		};
-		SDL_Flip(screen);
-    }
-	return true;
+				break;
+			}
+			while (SDL_PollEvent(&event))
+			{
+				if (event.type == SDL_QUIT) { salirJuego = true; }     //    Si se detecta una salida 
+				if (event.type == SDL_KEYDOWN) {} //   una dirección (abajo) del teclado.
+			}
+			SDL_Flip(screen);
+
+		}
+		return true;
 }

@@ -1,10 +1,12 @@
 #include <SDL.h>
 #include "Sprite.h"
+#include "Nave.h"
 
 class CGame
 {
 public:
 	bool Start();
+	static CGame instanceGame;
 	enum Estado{
 		ESTADO_INICIANDO,
 		ESTADO_MENU,
@@ -13,14 +15,17 @@ public:
 		ESTADO_FINALIZADO
 	};
 	
-	static CGame instanceGame;
 
 	CGame();
 	void Finalize();
 
 private:
 	void Iniciando();
+
+	Uint8 *keys;
+	SDL_Event event;
 	SDL_Surface *screen;
-	Sprite *nave;
+	Nave * nave;
+	Nave * enemigo;
 	Estado estado;   
 };

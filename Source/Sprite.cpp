@@ -13,14 +13,15 @@ void Sprite::CargaImagen(char * path){
 
 	imagen = SDL_LoadBMP(path);
 
-} void Sprite::PintarModulo(int nombre, int x, int y, int w, int h){
+}
+/*void Sprite::PintarModulo(int nombre, int x, int y, int w, int h){
 	SDL_Rect src;
 	src.x = x;
 	src.y = y;
 	src.w = w;
 	src.h = h;
-	SDL_BlitSurface(imagen, &src, Screen, NULL);
-}
+	SDL_BlitSurface(imagen, &src, Screen, NULL);*/
+
 void Sprite::PintarModulo(int nombre, int x, int y){
 	SDL_Rect src;
 	src.x = spriteDef.modulos[nombre].x;
@@ -31,4 +32,14 @@ void Sprite::PintarModulo(int nombre, int x, int y){
 	dest.x = x;
 	dest.y = y;
 	SDL_BlitSurface(imagen, &src, Screen, &dest);
+}
+int Sprite::WidthModule(int module)
+{
+	return spriteDef.modulos[module].w;
+
+}
+int Sprite::HeightModule(int module)
+{
+	return spriteDef.modulos[module].h;
+
 }
