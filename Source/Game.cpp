@@ -7,7 +7,7 @@
 #include "Sprite.h"
 
 
-
+// maestro este es el bueno para el examen
 
 
 CGame::CGame(){
@@ -25,7 +25,7 @@ void CGame::Finalize(){
 
 
 
-void CGame::Iniciando()
+void CGame::Iniciando()  //iniciando
 {
 	if (SDL_Init(SDL_INIT_VIDEO))
 	{
