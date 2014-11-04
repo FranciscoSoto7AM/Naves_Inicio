@@ -2,6 +2,12 @@
 #include "Sprite.h"
 #include "Nave.h"
 
+#define BORDE_IZQUIERDO  1<<0
+#define BORDE_SUPERIOR   1<<1
+#define BORDE_DERECHO    1<<2
+#define BORDE_INFERIOR   1<<3
+
+
 class CGame
 {
 public:
@@ -21,11 +27,15 @@ public:
 
 private:
 	void Iniciando();
+	void MoverEnemigo();
+	bool EsLimitePantalla(Nave * objeto, int bandera);
 
 	Uint8 *keys;
 	SDL_Event event;
 	SDL_Surface *screen;
 	Nave * nave;
-	Nave * enemigo;
+	
+	Nave *enemigoArreglo[10];
+
 	Estado estado;   
 };

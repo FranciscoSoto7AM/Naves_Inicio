@@ -31,7 +31,7 @@ void Sprite::PintarModulo(int nombre, int x, int y){
 	SDL_Rect dest;
 	dest.x = x;
 	dest.y = y;
-	SDL_BlitSurface(imagen, &src, Screen, &dest);
+	SDL_BlitSurface(imagen, &src, Screen, &dest); //
 }
 int Sprite::WidthModule(int module)
 {

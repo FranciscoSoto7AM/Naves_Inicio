@@ -4,5 +4,7 @@
 #define WIDTH_SCREEN 640   //define el ancho de la pantalla
 #define HEIGHT_SCREEN 480  //define el largo de la pantalla
 
+
+
 #endif
 
