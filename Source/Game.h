@@ -37,5 +37,13 @@ private:
 	
 	Nave *enemigoArreglo[10];
 
+	Nave *menu;  //fondo del menu
+	Nave *textos;    //texto del juego
+	Nave *fondo;   //fondo del juego
+
+	int tick;
+	int tiempoFrameInicial;
+	int tiempoFrameFinal;
+
 	Estado estado;   
 };

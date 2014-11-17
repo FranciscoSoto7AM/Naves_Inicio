@@ -54,12 +54,13 @@ void CGame::Iniciando()  //iniciando
 	}
 	SDL_WM_SetCaption("Mi Primer video Juego", NULL);
 
-		nave = new Nave(screen, "../Data/minave.bmp", (WIDTH_SCREEN / 2) /*- (sprite->WidthModule(0) / 2)*/, (HEIGHT_SCREEN - 80) /*- sprite->HeightModule(0)*/);
+		nave = new Nave(screen, "../Data/minave.bmp", (WIDTH_SCREEN / 2) , (HEIGHT_SCREEN - 80),0);
+		menu = new Nave(screen, "../Data/FondoMenu.bmp", 0, 0,1);
 		
 
 		for (int i = 0; i < 10; i++)
 		{
-			enemigoArreglo[i] = new Nave(screen, "../Data/enemigo.bmp",i* 60, 0);
+			enemigoArreglo[i] = new Nave(screen, "../Data/enemigo.bmp",i* 60,0, 2);
 			enemigoArreglo[i]->SetAutoMovimiento(false);
 			enemigoArreglo[i]->SetPasoLimite(4);
 		}
@@ -88,18 +89,8 @@ void CGame::Iniciando()  //iniciando
 				estado = ESTADO_MENU;
 				break;
 			case Estado::ESTADO_MENU:	   //MENU
-				if (i == 0)
-				{
-					printf("\n2. Estado_Menu");
-					estado = ESTADO_JUGANDO;
-					i = 1;
-				}
-				else
-				{
-					printf("\n2. Estado_Menu");
-					estado = ESTADO_FINALIZADO;
-
-				}
+				menu->Pintar();
+				//estado= ESTADO_JUGANDO
 				break;
 			case Estado::ESTADO_JUGANDO: //JUGAR
 				
@@ -111,23 +102,23 @@ void CGame::Iniciando()  //iniciando
 				if (keys[SDLK_RIGHT])
 				{
 					if (!EsLimitePantalla(nave, BORDE_DERECHO))
-					nave->MoverX(1);
+					nave->MoverX(5);
 
 				}
 				if (keys[SDLK_LEFT])
 				{
 					if (!EsLimitePantalla(nave, BORDE_IZQUIERDO))
-					nave->MoverX(-1);
+					nave->MoverX(-5);
 				}
 				if (keys[SDLK_UP])
 				{
 					if (!EsLimitePantalla(nave, BORDE_SUPERIOR))
-						nave->MoverY(-1);
+						nave->MoverY(-5);
 				}
 				if (keys[SDLK_DOWN])
 				{
 					if (!EsLimitePantalla(nave, BORDE_INFERIOR))
-						nave->MoverY(1);
+						nave->MoverY(5);
 				}
 
 			
@@ -161,6 +152,17 @@ void CGame::Iniciando()  //iniciando
 			}
 			SDL_Flip(screen);  //guarda en memoria buffer
 
+			//calculando FPS
+			tiempoFrameFinal = SDL_GetTicks();
+			while (tiempoFrameFinal < (tiempoFrameInicial + FPS_DELAY)){
+				tiempoFrameFinal = SDL_GetTicks();
+				SDL_Delay(1);
+			}
+
+
+			printf("Frames:%d Tiempo:%d Tiempo Promedio:%f Tiempo Por Frame:%d FPS:%f\n", tick, SDL_GetTicks(), (float)SDL_GetTicks() / (float)tick, tiempoFrameFinal - tiempoFrameInicial,1000.0f / (float) (tiempoFrameFinal-tiempoFrameInicial));
+		    tiempoFrameInicial = tiempoFrameFinal; //Marcamos el inicio nuevamente
+			tick++;
 		}
 		return true;
 }
@@ -188,7 +190,7 @@ void CGame::Iniciando()  //iniciando
 				//paso 0
 				if (enemigoArreglo[i]->ObtenerPasoActual() == 0)
 					if (!EsLimitePantalla(enemigoArreglo[i], BORDE_DERECHO))
-						enemigoArreglo[i]->MoverX(1);//DERECHA
+						enemigoArreglo[i]->MoverX(10);//DERECHA
 					else{
 						enemigoArreglo[i]->IncrementarPasoActual();
 						enemigoArreglo[i]->IncrementarPasoActual();
@@ -200,7 +202,7 @@ void CGame::Iniciando()  //iniciando
 					// paso 2
 					if (enemigoArreglo[i]->ObtenerPasoActual() == 2)
 						if (!EsLimitePantalla(enemigoArreglo[i], BORDE_IZQUIERDO))
-							enemigoArreglo[i]->MoverX(-1); //IZQUIERDA
+							enemigoArreglo[i]->MoverX(-10); //IZQUIERDA
 						else
 						{
 							enemigoArreglo[i]->IncrementarPasoActual();
