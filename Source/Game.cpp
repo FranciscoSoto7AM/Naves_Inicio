@@ -230,6 +230,6 @@ void CGame::Iniciando()  //iniciando
 			if (i == opcionSeleccionada)
 				textos->Pintar(i+2, 220, 180 + (j * 80));
 			else
-			textos -> Pintar(i, 220, 150 + (j * 80));
+			textos -> Pintar(i, 220, 180 + (j * 80));
 		}
 	}
