@@ -24,40 +24,40 @@ SpriteDef::SpriteDef()
 	modulos[2].h = 61;
 
 	modulos[3].id = MODULO_FondoTexto_TITULO;
-	modulos[3].x = 9;
-	modulos[3].y = 67;
-	modulos[3].w = 277;
-	modulos[3].h = 53;
+	modulos[3].x = 179;
+	modulos[3].y = 44;
+	modulos[3].w = 235;
+	modulos[3].h = 52;
 
 	modulos[4].id = MODULO_FondoMenu_NOMBRE;
-	modulos[4].x = 8;
-	modulos[4].y = 184;
-	modulos[4].w = 228;
-	modulos[4].h = 55;
+	modulos[4].x = 16;
+	modulos[4].y = 425;
+	modulos[4].w = 157;
+	modulos[4].h = 24;
 
 	modulos[5].id = MODULO_FondoMenu_MENU_OPCION1;
-	modulos[5].x = 410;
-	modulos[5].y = 47;
-	modulos[5].w = 162;
-	modulos[5].h = 54;
+	modulos[5].x = 369;
+	modulos[5].y = 160;
+	modulos[5].w = 99;
+	modulos[5].h = 28;
 
 	modulos[6].id = MODULO_FondoMenu_MENU_OPCION2;
-	modulos[6].x = 410;
-	modulos[6].y = 119;
-	modulos[6].w = 118;
-	modulos[6].h = 50;
+	modulos[6].x = 368;
+	modulos[6].y = 195;
+	modulos[6].w = 56;
+	modulos[6].h = 29;
 
 	modulos[7].id = MODULO_FondoMenu_MENU_OPCION1_SELECCIONADO;
-	modulos[7].x = 410;
-	modulos[7].y = 207;
-	modulos[7].w = 160;
-	modulos[7].h = 57;
+	modulos[7].x = 367;
+	modulos[7].y = 232;
+	modulos[7].w = 100;
+	modulos[7].h = 29;
 
 	modulos[8].id = MODULO_FondoMenu_MENU_OPCION2_SELECCIONADO;
-	modulos[8].x = 410;
-	modulos[8].y = 279;
-	modulos[8].w = 118;
-	modulos[8].h = 49;
+	modulos[8].x = 366;
+	modulos[8].y = 271;
+	modulos[8].w = 60;
+	modulos[8].h = 27;
 
 
 
