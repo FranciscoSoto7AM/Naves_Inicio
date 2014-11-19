@@ -5,13 +5,16 @@
 Sprite::Sprite(SDL_Surface * screen){
 	screen;
 	this->Screen = screen;
+	
 }
 Sprite::~Sprite(){
 	SDL_FreeSurface(imagen);
+	
 }
 void Sprite::CargaImagen(char * path){
 
 	imagen = SDL_LoadBMP(path);
+	SDL_SetColorKey(imagen, SDL_SRCCOLORKEY | SDL_RLEACCEL, SDL_MapRGB(imagen->format, 255, 0, 255));
 
 }
 /*void Sprite::PintarModulo(int nombre, int x, int y, int w, int h){

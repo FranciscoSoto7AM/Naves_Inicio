@@ -27,9 +27,11 @@ public:
 
 private:
 	void Iniciando();
+	void Menu();
 	void MoverEnemigo();
 	bool EsLimitePantalla(Nave * objeto, int bandera);
 
+	int opcionSeleccionada;
 	Uint8 *keys;
 	SDL_Event event;
 	SDL_Surface *screen;

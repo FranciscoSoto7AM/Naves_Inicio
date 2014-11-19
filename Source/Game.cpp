@@ -54,18 +54,20 @@ void CGame::Iniciando()  //iniciando
 	}
 	SDL_WM_SetCaption("Mi Primer video Juego", NULL);
 
-		nave = new Nave(screen, "../Data/minave.bmp", (WIDTH_SCREEN / 2) , (HEIGHT_SCREEN - 80),0);
-		menu = new Nave(screen, "../Data/FondoMenu.bmp", 0, 0,1);
+		nave = new Nave(screen, "../Data/minave.bmp", (WIDTH_SCREEN / 2) , (HEIGHT_SCREEN - 80),MODULO_minave_NAVE);
+		menu = new Nave(screen, "../Data/FondoMenu.bmp", 0, 0,MODULO_FondoMenu_FONDO);
+		textos = new Nave(screen, "../Data/FondoTexto.bmp", 0, 0,-1);
 		
 
 		for (int i = 0; i < 10; i++)
 		{
-			enemigoArreglo[i] = new Nave(screen, "../Data/enemigo.bmp",i* 60,0, 2);
+			enemigoArreglo[i] = new Nave(screen, "../Data/enemigo.bmp",i* 60,0,MODULO_enemigo_NAVE);
 			enemigoArreglo[i]->SetAutoMovimiento(false);
 			enemigoArreglo[i]->SetPasoLimite(4);
 		}
 		
-		
+		tick = 0;
+		opcionSeleccionada = MODULO_FondoMenu_MENU_OPCION1;
 
 	}
 
@@ -90,6 +92,13 @@ void CGame::Iniciando()  //iniciando
 				break;
 			case Estado::ESTADO_MENU:	   //MENU
 				menu->Pintar();
+				textos->Pintar(MODULO_FondoTexto_TITULO,160,50);
+				textos->Pintar(MODULO_FondoMenu_NOMBRE,400, 410);
+				Menu();
+				
+				
+				
+
 				//estado= ESTADO_JUGANDO
 				break;
 			case Estado::ESTADO_JUGANDO: //JUGAR
@@ -212,4 +221,15 @@ void CGame::Iniciando()  //iniciando
 					// if (!EsLimitePantalla(enemigo, BORDE_INFERIOR))
 					// ENEMIGO->MOVER(1); //ABAJO
 			}
+	}
+
+	void CGame::Menu()
+	{
+		for (int i = MODULO_FondoMenu_MENU_OPCION1, j=0; i <= MODULO_FondoMenu_MENU_OPCION2; i++, j++)
+		{
+			if (i == opcionSeleccionada)
+				textos->Pintar(i+2, 220, 180 + (j * 80));
+			else
+			textos -> Pintar(i, 220, 150 + (j * 80));
+		}
 	}
