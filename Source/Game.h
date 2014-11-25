@@ -1,6 +1,8 @@
+#pragma once
 #include <SDL.h>
 #include "Sprite.h"
 #include "Objeto.h"
+#include "Nave.h"
 
 #define BORDE_IZQUIERDO  1<<0
 #define BORDE_SUPERIOR   1<<1
@@ -35,7 +37,7 @@ private:
 	Uint8 *keys;
 	SDL_Event event;
 	SDL_Surface *screen;
-	Objeto * nave;
+	Nave * nave;
 	
 	Objeto *enemigoArreglo[10];
 

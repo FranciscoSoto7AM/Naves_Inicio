@@ -132,6 +132,7 @@
   <ItemGroup>
     <ClCompile Include="..\Source\main.cpp" />
     <ClCompile Include="..\Source\Game.cpp" />
+    <ClCompile Include="..\Source\Nave.cpp" />
     <ClCompile Include="..\Source\Objeto.cpp" />
     <ClCompile Include="..\Source\Sprite.cpp" />
     <ClCompile Include="..\Source\SpriteDef.cpp" />
@@ -140,6 +141,7 @@
   <ItemGroup>
     <ClInclude Include="..\Source\Config.h" />
     <ClInclude Include="..\Source\Game.h" />
+    <ClInclude Include="..\Source\Nave.h" />
     <ClInclude Include="..\Source\Objeto.h" />
     <ClInclude Include="..\Source\Sprite.h" />
     <ClInclude Include="..\Source\SpriteDef.h" />

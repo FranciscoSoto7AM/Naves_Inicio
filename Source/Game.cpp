@@ -54,7 +54,7 @@ void CGame::Iniciando()  //iniciando
 	}
 	SDL_WM_SetCaption("Mi Primer video Juego", NULL);
 
-		nave = new Objeto(screen, "../Data/minave.bmp", (WIDTH_SCREEN / 2) , (HEIGHT_SCREEN - 80),MODULO_minave_NAVE);
+		nave = new Nave(screen, "../Data/minave.bmp", (WIDTH_SCREEN / 2) , (HEIGHT_SCREEN - 80),MODULO_minave_NAVE);
 		menu = new Objeto(screen, "../Data/FondoMenu.bmp", 0, 0,MODULO_FondoMenu_FONDO);
 		textos = new Objeto(screen, "../Data/FondoTexto.bmp", 0, 0,-1);
 		fondo = new Objeto(screen, "../Data/FondoJuego.bmp", 0, 0,MODULO_FondoMenu_FONDO);
@@ -112,24 +112,24 @@ void CGame::Iniciando()  //iniciando
 				keys = SDL_GetKeyState(NULL);
 				if (keys[SDLK_RIGHT])
 				{
-					if (!EsLimitePantalla(nave, BORDE_DERECHO))
-					nave->MoverX(5);
+					if (!EsLimitePantalla(nave->GetNaveObjeto(), BORDE_DERECHO))
+					nave->MoverDerecha();
 
 				}
 				if (keys[SDLK_LEFT])
 				{
-					if (!EsLimitePantalla(nave, BORDE_IZQUIERDO))
-					nave->MoverX(-5);
+					if (!EsLimitePantalla(nave->GetNaveObjeto(), BORDE_IZQUIERDO))
+					nave->MoverIzquierda();
 				}
 				if (keys[SDLK_UP])
 				{
-					if (!EsLimitePantalla(nave, BORDE_SUPERIOR))
-						nave->MoverY(-5);
+					if (!EsLimitePantalla(nave->GetNaveObjeto(), BORDE_SUPERIOR))
+						nave->MoverArriba();
 				}
 				if (keys[SDLK_DOWN])
 				{
-					if (!EsLimitePantalla(nave, BORDE_INFERIOR))
-						nave->MoverY(5);
+					if (!EsLimitePantalla(nave->GetNaveObjeto(), BORDE_INFERIOR))
+						nave->MoverAbajo();
 				}
 
 			
