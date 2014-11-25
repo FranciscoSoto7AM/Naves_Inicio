@@ -1,6 +1,6 @@
 #include <SDL.h>
 #include "Sprite.h"
-#include "Nave.h"
+#include "Objeto.h"
 
 #define BORDE_IZQUIERDO  1<<0
 #define BORDE_SUPERIOR   1<<1
@@ -29,19 +29,20 @@ private:
 	void Iniciando();
 	void Menu();
 	void MoverEnemigo();
-	bool EsLimitePantalla(Nave * objeto, int bandera);
+	bool EsLimitePantalla(Objeto * objeto, int bandera);
 
 	int opcionSeleccionada;
 	Uint8 *keys;
 	SDL_Event event;
 	SDL_Surface *screen;
-	Nave * nave;
+	Objeto * nave;
 	
-	Nave *enemigoArreglo[10];
+	Objeto *enemigoArreglo[10];
 
-	Nave *menu;  //fondo del menu
-	Nave *textos;    //texto del juego
-	Nave *fondo;   //fondo del juego
+	Objeto *menu;  //fondo del menu
+	Objeto *textos;    //texto del juego
+	Objeto *fondo;   //fondo del juego
+
 
 	int tick;
 	int tiempoFrameInicial;
