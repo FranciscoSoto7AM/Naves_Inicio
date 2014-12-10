@@ -1,9 +1,19 @@
-#ifndef _NAVE_H_
-#define _nave_h_
+#ifndef _STAGE_H_
+#define _STAGE_H_
 
-class Stage
-{
+class stage{
+public:
+	int VelocidadNavePropia;
+	int VelocidadNaveEnemigo;
+	int VidaEnemigo;
+	int BalasMaximas;
+	int FondoNivel;
+	int VelocidadBalasEnemigo;
+	int VelocidadBalasPropias;
+	int NumeroEnemigosVisibles;
+	int NumeroEnemigoAEliminar;
 
 };
+
 
 #endif

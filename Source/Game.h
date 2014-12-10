@@ -3,6 +3,7 @@
 #include "Sprite.h"
 #include "Objeto.h"
 #include "Nave.h"
+#include "Stage.h"
 
 #define BORDE_IZQUIERDO  1<<0
 #define BORDE_SUPERIOR   1<<1
@@ -18,6 +19,7 @@ public:
 	enum Estado{
 		ESTADO_INICIANDO,
 		ESTADO_MENU,
+		ESTADO_PRE_JUGANDO,
 		ESTADO_JUGANDO,
 		ESTADO_TERMINANDO,
 		ESTADO_FINALIZADO
@@ -38,8 +40,13 @@ private:
 	SDL_Event event;
 	SDL_Surface *screen;
 	Nave * nave;
+
+	Nave *enemigoArreglo[10];
+	stage nivel[4];
+	void InicializandoStage();
+	int NivelActual;
 	
-	Objeto *enemigoArreglo[10];
+	
 
 	Objeto *menu;  //fondo del menu
 	Objeto *textos;    //texto del juego
@@ -50,5 +57,7 @@ private:
 	int tiempoFrameInicial;
 	int tiempoFrameFinal;
 
+	int vida;
+	int enemigosEliminados;
 	Estado estado;   
 };

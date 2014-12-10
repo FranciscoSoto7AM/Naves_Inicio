@@ -60,6 +60,12 @@ SpriteDef::SpriteDef()
 	modulos[8].w = 60;
 	modulos[8].h = 27;
 
+	modulos[9].id = MODULO_BALAS_BALA;
+	modulos[9].x = 0;
+	modulos[9].y = 0;
+	modulos[9].w = 5;
+	modulos[9].h = 5;
+
 
 
 };
